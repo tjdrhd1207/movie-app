@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import { useEffect, useState} from "react";
 import { Route, Routes, Link, Router } from 'react-router-dom';
 import HelloWorld from './HelloWorld';
-import MovieList from './movieList';
+
 
 function App() {
 
@@ -33,23 +33,20 @@ function App() {
   }, []);
   console.log(movies);
   return (
-
     <div>
-      <div>
-            <Link to='/helloWorld'>
-              <button>Home</button>
-            </Link>
-          
-            <Link to='/movieList'>
-              <button>Hello</button>
-            </Link>
-      </div>
-        <Routes>
-          <Route path="/helloWorld" element={<HelloWorld/>}></Route>
-          <Route path="/movieList" element={<MovieList/>}></Route>
-        </Routes>
+      {loading ? 
+        (<h1>Loading....</h1>)
+         : (<div>
+              {movies.map((movie)=>(
+                <div key={movie.id}>
+                  <img src={movie.medium_cover_image} onClick={()=> searchMovieInfo(movie.title)}/>
+                  <h2>{movie.title}</h2>
+                  <ul>{movie.genres.map((genre)=>(<li key={genre}>{genre}</li>))}</ul>
+                  <p>{movie.summary}</p>
+                </div>))}
+            </div>
+      )}
     </div>
-
     );
 }
 
