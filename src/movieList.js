@@ -1,22 +1,40 @@
 import Button from "./Button";
 import styles from "./App.module.css";
 import { useEffect, useState} from "react";
+import axios from 'axios';
 import { Route, Routes, Link, Router } from 'react-router-dom';
 import HelloWorld from './HelloWorld';
-
+import Movie from './components/Movie';
 
 function App() {
-
+  
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-  
+  const [reviews, setReviews] = useState([]);
+
   const searchMovieInfo = async(event) =>{
-    console.log(event);
+
+    
+    //console.log(event);
 
     const client_id = `HSE89T6wcK0_bWpi6Gwv`;
     const client_secret = `5MkrcmyMXx`;
 
-    //let searchMovieResponse = await fetch();
+    const searchMovieResponse = await axios("https://openapi.naver.com/v1/search/cafearticle.json",{
+      params : {
+        query : event
+      },
+      headers : {
+        'X-Naver-Client-Id' : client_id,
+        'X-Naver-Client-Secret' : client_secret
+      }
+      
+    });
+
+    
+    setReviews(searchMovieResponse.data);
+    console.log("결과 : "+searchMovieResponse.data);
+    console.log(searchMovieResponse);
   }
 
   const getMovies = async() => {
@@ -31,19 +49,21 @@ function App() {
   useEffect(()=>{
     getMovies();    
   }, []);
-  console.log(movies);
+  //console.log(movies);
   return (
     <div>
       {loading ? 
         (<h1>Loading....</h1>)
          : (<div>
-              {movies.map((movie)=>(
-                <div key={movie.id}>
-                  <img src={movie.medium_cover_image} onClick={()=> searchMovieInfo(movie.title)}/>
-                  <h2>{movie.title}</h2>
-                  <ul>{movie.genres.map((genre)=>(<li key={genre}>{genre}</li>))}</ul>
-                  <p>{movie.summary}</p>
-                </div>))}
+              {movies.map((movie)=>
+               <Movie 
+                  key={movie.id} 
+                  id={movie.id}
+                  coverImg={movie.medium_cover_image} 
+                  title={movie.title} 
+                  summary={movie.summary} 
+                  genres={movie.genres} />
+              )}
             </div>
       )}
     </div>

@@ -4,6 +4,9 @@ import { useEffect, useState} from "react";
 import { Route, Routes, Link, Router } from 'react-router-dom';
 import HelloWorld from './HelloWorld';
 import MovieList from './movieList';
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
+import Movie from './components/Movie';
 
 function App() {
 
@@ -11,7 +14,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   
   const searchMovieInfo = async(event) =>{
-    console.log(event);
+    //console.log(event);
 
     const client_id = `HSE89T6wcK0_bWpi6Gwv`;
     const client_secret = `5MkrcmyMXx`;
@@ -31,26 +34,14 @@ function App() {
   useEffect(()=>{
     getMovies();    
   }, []);
-  console.log(movies);
-  return (
-
-    <div>
-      <div>
-            <Link to='/helloWorld'>
-              <button>Home</button>
-            </Link>
+  
+  return <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path='/movie/:id'  element={<Detail/>}/>
+          <Route path="/helloWorld" element={<HelloWorld />}/>
+          <Route path="/movieList" element={<MovieList />}/>
+         </Routes>;
           
-            <Link to='/movieList'>
-              <button>Hello</button>
-            </Link>
-      </div>
-        <Routes>
-          <Route path="/helloWorld" element={<HelloWorld/>}></Route>
-          <Route path="/movieList" element={<MovieList/>}></Route>
-        </Routes>
-    </div>
-
-    );
 }
 
 export default App;
