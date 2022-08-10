@@ -1,0 +1,106 @@
+body{
+    background-color: #343434;
+    overflow-y: hidden;
+}
+
+.grid-container{
+    display : grid;
+    /* grid-template-columns : repeat(auto-fill, minmax(300px, 1fr)); */
+    grid-template-columns : 1fr 1fr 1fr 1fr;
+    grid-gap : 1em;
+    place-items: center;
+    min-height: 100vh;
+
+    transition : 0.5s;
+}
+
+
+/* .movebtn{
+    width: 800px;
+    color : white;
+    position : absolute;
+    z-index : 2;
+} */
+
+/* .container{
+    background-color: white;
+    color: inherit;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+} */
+
+.grid-container .card{
+    cursor : pointer;
+}
+
+.grid-container .card .face{
+    width : 200px;
+    height : 200px;
+    transition : 0.5s;
+}
+
+.grid-container .card .face.face1{
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    z-index : 1;
+    transform: translateY(100px);
+}
+
+/* .grid-container .card:hover .face.face1{
+    background : #ff0057;
+    transform : translateY();
+} */
+
+/* .grid-container .card .face.face1 .content{
+    opacity : 0.2;
+    transition : 0.5s;
+} */
+
+.grid-container .card:hover .face.face1 .content{
+    opacity : 1;
+}
+
+.grid-container .card .face.face1 .content h3{
+    margin : 10px 0 0;
+    padding : 0;
+    color : #fff;
+    text-align: center;
+    font-size : 1.5em;
+}
+
+.grid-container .card .face.face2 .content p{
+    margin : 0;
+    padding : 0;
+}
+
+.movie_img{
+    background-color: white;
+    margin-bottom: 70px;
+    font-weight: 300;
+    padding: 20px;
+    border-radius: 5px;
+    color: #adaeb9;
+    /* display: grid; */
+    /* grid-template-columns: minmax(150px, 1fr) 2fr; */
+    /* grid-gap: 20px; */
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+}
+
+.movebtn{
+    position : absolute;
+    z-index : 2;
+    top : 50%;
+}
+
+.movebtn.pre{
+    
+    left : 5px;
+}
+
+.movebtn.next{
+    right : 5px;
+}

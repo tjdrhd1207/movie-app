@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import { useEffect, useState} from "react";
 import { Route, Routes, Link, Router } from 'react-router-dom';
 import HelloWorld from './HelloWorld';
-import MovieList from './movieList';
+import MovieList from './routes/movieList';
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
 import Movie from './components/Movie';

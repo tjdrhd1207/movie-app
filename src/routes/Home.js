@@ -1,6 +1,6 @@
 import {Link, Routes, Route} from 'react-router-dom';
 import HelloWorld from '../HelloWorld';
-import MovieList from '../movieList';
+import MovieList from './movieList';
 
 const Home = () => {
     return <div>
